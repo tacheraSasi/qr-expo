@@ -7,6 +7,7 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import ScanIcon from '@/components/ScanIcon';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -33,6 +34,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
+      <ScanIcon/>
       <Tabs.Screen
         name="explore"
         options={{
