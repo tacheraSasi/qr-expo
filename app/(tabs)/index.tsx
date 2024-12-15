@@ -1,20 +1,27 @@
+import { useNavigation, useRouter } from 'expo-router';
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
+  const router = useRouter()
+
+
+  const gotoScannerPage=()=>{
+    router.push("/scan")
+  }
   return (
     <View style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
         <Text style={styles.title}>QR Code Scanner</Text>
         <Image
-          source={require('../../assests/images/icon.png')} 
+          source={require('../../assets/images/icon.png')} 
           style={styles.headerImage}
         />
       </View>
 
       {/* Scan Button */}
-      <TouchableOpacity style={styles.scanButton} onPress={() => alert('Scanning QR Code')}>
+      <TouchableOpacity style={styles.scanButton} onPress={() => gotoScannerPage()}>
         <Text style={styles.scanButtonText}>Scan QR Code</Text>
       </TouchableOpacity>
 
