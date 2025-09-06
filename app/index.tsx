@@ -1,17 +1,11 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, StatusBar } from "react-native";
+import React from "react";
+import Scanner from "@/components/scanner";
 
-export default function Scan() {
+export default function Home() {
   return (
-    <View>
-      <Text>scan</Text>
-      <Text>scan</Text>
-      <Text>scan</Text>
-      <Text>scan</Text>
-      <Text>scan</Text>
-      <Text>scan</Text>
-      <Text>scan</Text>
-      <Text>scan</Text>
+    <View style={{ flex: 1 }}>
+      <Scanner />
     </View>
-  )
+  );
 }
