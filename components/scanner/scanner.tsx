@@ -45,7 +45,7 @@ export default function Scanner() {
       qrLock.current = true;
       setTimeout(async () => {
         await Linking.openURL(data);
-      }, 1000);
+      }, 500);
     }
   };
 
