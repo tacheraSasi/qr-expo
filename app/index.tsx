@@ -5,6 +5,13 @@ export default function Scan() {
   return (
     <View>
       <Text>scan</Text>
+      <Text>scan</Text>
+      <Text>scan</Text>
+      <Text>scan</Text>
+      <Text>scan</Text>
+      <Text>scan</Text>
+      <Text>scan</Text>
+      <Text>scan</Text>
     </View>
   )
 }
