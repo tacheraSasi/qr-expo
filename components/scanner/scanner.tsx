@@ -14,6 +14,7 @@ import {
 export default function Scanner() {
   const [facing, setFacing] = useState<CameraType>("back");
   const [permission, requestPermission] = useCameraPermissions();
+  const [link, setLink] = useState("");
   const qrLock = useRef(false);
   const appState = useRef(AppState.currentState);
 
@@ -39,7 +40,8 @@ export default function Scanner() {
   }
 
   const scan = (data: string) => {
-    if (data && !qrLock.current) {
+    console.log("scanned data:", data);
+    if (data) {
       qrLock.current = true;
       setTimeout(async () => {
         await Linking.openURL(data);
@@ -71,10 +73,10 @@ export default function Scanner() {
           barcodeTypes: ["qr"],
         }}
         onBarcodeScanned={({ data }) => {
-          scan(data);
+          setLink(data);
         }}
       />
-      <Overlay scan={scan} data={data} />
+      <Overlay scan={scan} data={link} />
     </View>
   );
 }
