@@ -5,15 +5,20 @@ const iconPath = require("../assets/images/icon.png")
 
 const ScanIcon = () => {
   return (
-    <TouchableOpacity>
+    <View style={{
+      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      borderRadius: 20,
+      padding: 8,
+    }}>
       <Image
-      style={{
-        width:60,
-        height:60
-      }}
-      source={iconPath}
+        style={{
+          width: 32,
+          height: 32,
+          tintColor: 'white',
+        }}
+        source={iconPath}
       />
-    </TouchableOpacity>
+    </View>
   )
 }
 
