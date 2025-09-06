@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   box: {
     width: 300,
     height: 300,
-    borderRadius: 10,
+    borderRadius: 20,
     borderWidth: 2,
     borderColor: "white",
     marginTop: 20,
