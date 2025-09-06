@@ -1,5 +1,4 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
 import { Image } from 'react-native'
 
 const iconPath = require("../assets/images/icon.png")
