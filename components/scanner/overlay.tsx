@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   text: {
     color: 'white',
@@ -28,8 +28,10 @@ const styles = StyleSheet.create({
   box: {
     width: 300,
     height: 300,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     borderRadius: 10,
+    borderWidth: 2,
+    borderColor: 'white',
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
