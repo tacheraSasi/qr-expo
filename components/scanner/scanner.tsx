@@ -14,7 +14,7 @@ import {
 export default function Scanner() {
   const [facing, setFacing] = useState<CameraType>("back");
   const [permission, requestPermission] = useCameraPermissions();
-  const [link, setLink] = useState("");
+  const [scannedData, setScannedData] = useState("");
   const qrLock = useRef(false);
   const appState = useRef(AppState.currentState);
 
@@ -39,13 +39,28 @@ export default function Scanner() {
     return <View />;
   }
 
-  const scan = (data: string) => {
+  const handleBarcodeScanned = ({ data }: { data: string }) => {
+    if (qrLock.current) return;
+    
     console.log("scanned data:", data);
-    if (data) {
+    if (data && data !== "exp://192.168.1.3:8081") { // Filter out development server URL
+      setScannedData(data);
+    }
+  };
+
+  const openScannedData = async () => {
+    if (scannedData && !qrLock.current) {
       qrLock.current = true;
-      setTimeout(async () => {
-        await Linking.openURL(data);
-      }, 500);
+      try {
+        await Linking.openURL(scannedData);
+      } catch (error) {
+        console.error("Failed to open URL:", error);
+      }
+      // Reset after 2 seconds
+      setTimeout(() => {
+        qrLock.current = false;
+        setScannedData("");
+      }, 2000);
     }
   };
 
@@ -72,11 +87,9 @@ export default function Scanner() {
         barcodeScannerSettings={{
           barcodeTypes: ["qr"],
         }}
-        onBarcodeScanned={({ data }) => {
-          setLink(data);
-        }}
+        onBarcodeScanned={handleBarcodeScanned}
       />
-      <Overlay scan={scan} data={link} />
+      <Overlay onScan={openScannedData} scannedData={scannedData} />
     </View>
   );
 }

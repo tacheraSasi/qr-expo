@@ -4,38 +4,44 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 
 interface OverlayProps {
-  scan: (data:string) => void;
-  data: string;
+  onScan: () => void;
+  scannedData: string;
 }
 
-export default function Overlay({ scan, data }: OverlayProps) {
+export default function Overlay({ onScan, scannedData }: OverlayProps) {
   const [isPressed, setIsPressed] = useState(false);
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Scan a QR code</Text>
       <View style={styles.box} />
+      {scannedData ? (
+        <View style={styles.scannedDataContainer}>
+          <Text style={styles.scannedDataText}>QR Code Detected!</Text>
+          <Text style={styles.urlText} numberOfLines={2}>{scannedData}</Text>
+        </View>
+      ) : null}
       <TouchableOpacity
         style={[styles.scanButton, isPressed && styles.scanButtonPressed]}
-        onPressIn={() => {
-          setIsPressed(true);
-          scan(data);
-        }}
-        onPressOut={() => {
-          setIsPressed(false);
-          scan(data);
-        }}
+        onPressIn={() => setIsPressed(true)}
+        onPressOut={() => setIsPressed(false)}
+        onPress={onScan}
         activeOpacity={0.8}
+        disabled={!scannedData}
       >
         <LinearGradient
-          colors={["rgba(234, 102, 155, 0.7)", "rgba(162, 87, 75,0.7)"]}
+          colors={scannedData 
+            ? ["rgba(34, 197, 94, 0.8)", "rgba(21, 128, 61, 0.8)"] 
+            : ["rgba(156, 163, 175, 0.6)", "rgba(107, 114, 128, 0.6)"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.gradientButton}
         >
           <View style={styles.buttonContent}>
             <ScanIcon />
-            <Text style={styles.scanButtonText}>Scan</Text>
+            <Text style={styles.scanButtonText}>
+              {scannedData ? "Open" : "Scan"}
+            </Text>
           </View>
         </LinearGradient>
       </TouchableOpacity>
@@ -109,5 +115,26 @@ const styles = StyleSheet.create({
     textShadowColor: "rgba(0, 0, 0, 0.3)",
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 2,
+  },
+  scannedDataContainer: {
+    position: "absolute",
+    top: 120,
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    borderRadius: 10,
+    padding: 16,
+    maxWidth: "80%",
+  },
+  scannedDataText: {
+    color: "#10b981",
+    fontSize: 16,
+    fontWeight: "600",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  urlText: {
+    color: "white",
+    fontSize: 14,
+    textAlign: "center",
+    fontFamily: "monospace",
   },
 });
