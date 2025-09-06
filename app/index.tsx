@@ -1,6 +1,6 @@
 import { View, Text, StatusBar } from "react-native";
 import React from "react";
-import Scanner from "@/components/scanner";
+import Scanner from "@/components/scanner/scanner";
 
 export default function Home() {
   return (

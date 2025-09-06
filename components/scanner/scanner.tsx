@@ -1,3 +1,4 @@
+import Overlay from '@/components/scanner/overlay';
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -28,11 +29,7 @@ export default function Scanner() {
   return (
     <View style={styles.container}>
       <CameraView style={styles.camera} facing={facing} />
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-          <Text style={styles.text}>Flip Camera</Text>
-        </TouchableOpacity>
-      </View>
+      <Overlay />
     </View>
   );
 }
