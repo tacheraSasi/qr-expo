@@ -1,2 +1,1 @@
 # qr-expo
-# beamdrop-reactnative
