@@ -20,7 +20,7 @@
     "@react-navigation/native": "^7.1.17",
     "@shopify/react-native-skia": "v2.0.0-next.4",
     "ekilirelay": "^1.0.3",
-    "expo": "^53.0.0",
+    "expo": "^54.0.0",
     "expo-blur": "~14.1.5",
     "expo-camera": "~16.1.11",
     "expo-constants": "~17.1.7",
